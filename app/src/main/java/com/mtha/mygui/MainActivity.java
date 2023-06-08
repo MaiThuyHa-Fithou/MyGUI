@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtResult;
     EditText edInput;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //viet phuong thuc ghep cac doi tuong view voi cac view trong layout
-    private void getViews(){
+    private void getViews() {
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edInput = findViewById(R.id.edInput);
         tbl_cal = findViewById(R.id.tbl_cal);
         //dang ky xu ly su kien cho cac nut lenh
-        for(int i=2; i<tbl_cal.getChildCount(); i++){
-            TableRow row =(TableRow) tbl_cal.getChildAt(i);
-            for(int j=0; j<row.getChildCount();j++){
-                Button btn = (Button)row.getChildAt(j);
+        for (int i = 2; i < tbl_cal.getChildCount(); i++) {
+            TableRow row = (TableRow) tbl_cal.getChildAt(i);
+            for (int j = 0; j < row.getChildCount(); j++) {
+                Button btn = (Button) row.getChildAt(j);
                 btn.setOnClickListener(this);
 
             }
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Button b = (Button)v;
-        switch(v.getId()){
+        Button b = (Button) v;
+        switch (v.getId()) {
             case R.id.btnCE:
                 edInput.setText(null);
                 break;
@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 edInput.setText(null);
                 break;
             case R.id.btnDelete:
-                String num =edInput.getText().toString();
-                if(num!=null && num.length()>0){
-                    num = num.substring(0, num.length()-1);
+                String num = edInput.getText().toString();
+                if (num != null && num.length() > 0) {
+                    num = num.substring(0, num.length() - 1);
                 }
                 edInput.setText(num);
                 edInput.setSelection(edInput.getText().length());
@@ -125,67 +125,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-    private void getNumber(Button button){
-        edInput.setText(edInput.getText()+button.getText().toString());
+
+    private void getNumber(Button button) {
+        edInput.setText(edInput.getText() + button.getText().toString());
         edInput.setSelection(edInput.getText().length());
     }
 
-    private void setAction(Button button){
+    private void setAction(Button button) {
         ACTION = button.getText().toString();
     }
-    private void operation(String action){
 
-        if(action.equals("+")){
-            if(!Double.isNaN(so1)){
-                so2= Double.parseDouble(edInput.getText().toString());
-                so1=so1+so2;
-            }else{
+    private void operation(String action) {
+
+        if (action.equals("+")) {
+            if (!Double.isNaN(so1)) {
+                so2 = Double.parseDouble(edInput.getText().toString());
+                so1 = so1 + so2;
+            } else {
                 so1 = Double.parseDouble(edInput.getText().toString());
             }
 
         }
-        if(action.equals("-")){
-            if(!Double.isNaN(so1)){
-                so2= Double.parseDouble(edInput.getText().toString());
-                so1=so1-so2;
-            }else{
+        if (action.equals("-")) {
+            if (!Double.isNaN(so1)) {
+                so2 = Double.parseDouble(edInput.getText().toString());
+                so1 = so1 - so2;
+            } else {
                 so1 = Double.parseDouble(edInput.getText().toString());
             }
 
 
         }
-        if(action.equals("*")){
-            if(!Double.isNaN(so1)){
-                so2= Double.parseDouble(edInput.getText().toString());
-                so1=so1*so2;
-            }else{
+        if (action.equals("*")) {
+            if (!Double.isNaN(so1)) {
+                so2 = Double.parseDouble(edInput.getText().toString());
+                so1 = so1 * so2;
+            } else {
                 so1 = Double.parseDouble(edInput.getText().toString());
             }
 
         }
-        if(action.equals("/")){
-            if(!Double.isNaN(so1)){
-                so2= Double.parseDouble(edInput.getText().toString());
-                so1 =so1/so2;
-            }else{
+        if (action.equals("/")) {
+            if (!Double.isNaN(so1)) {
+                so2 = Double.parseDouble(edInput.getText().toString());
+                so1 = so1 / so2;
+            } else {
                 so1 = Double.parseDouble(edInput.getText().toString());
             }
 
         }
-        txtResult.setText(so1 +action);
+        txtResult.setText(so1 + action);
         edInput.setText(null);
     }
 
-    private void result(){
-        double kq=0;
-        if(ACTION!=null && ACTION.equals("+")){
-            kq =so1+Double.parseDouble(edInput.getText().toString());
-        }else if(ACTION !=null && ACTION.equals("-")){
-            kq=so1-Double.parseDouble(edInput.getText().toString());
-        }else if(ACTION !=null && ACTION.equals("*")){
-            kq=so1*Double.parseDouble(edInput.getText().toString());
-        }else if(ACTION !=null && ACTION.equals("/")){
-            kq=so1/Double.parseDouble(edInput.getText().toString());
+    private void result() {
+        double kq = 0;
+        if (ACTION != null && ACTION.equals("+")) {
+            kq = so1 + Double.parseDouble(edInput.getText().toString());
+        } else if (ACTION != null && ACTION.equals("-")) {
+            kq = so1 - Double.parseDouble(edInput.getText().toString());
+        } else if (ACTION != null && ACTION.equals("*")) {
+            kq = so1 * Double.parseDouble(edInput.getText().toString());
+        } else if (ACTION != null && ACTION.equals("/")) {
+            kq = so1 / Double.parseDouble(edInput.getText().toString());
         }
         txtResult.setText(null);
         edInput.setText(String.valueOf(kq));
